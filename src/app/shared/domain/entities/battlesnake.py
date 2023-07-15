@@ -1,5 +1,7 @@
 from typing import List
 
+from src.app.shared.domain.entities.coordinate import Coordinate
+
 
 """
 {
@@ -65,7 +67,7 @@ class Battlesnake:
         squad = json.get("squad", "")
         
         customizations_json = json.get("customizations", {})
-        customizations = Customizations.from_json(customizations_json)
+        customizations = Customization.from_json(customizations_json)
         
         return Battlesnake(snake_id, name, health, body, latency,
                             head, length, shout, squad, customizations)
