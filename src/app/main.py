@@ -1,26 +1,52 @@
 from fastapi import FastAPI
 from mangum import Mangum
+from src.app.shared.domain.entities.battlesnake import Battlesnake
+import random
+from src.app.shared.domain.entities.board import Board
 
 app = FastAPI()
 
 # TODO: Implement my logic here to handle the requests from Battlesnake
 
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
+@app.get('/')
+def get_root():
+    response = {
+        "apiversion": "1",
+        "author": "Briqz23",
+        "color": "#9370DB",
+        "head": "beluga",
+        "tail": "fat-rattle",
+        "version": "0.0.1-beta"
+        }
+    return response
 
 
-@app.get("/items/{item_id}")
-def read_item(item_id: int):
-    return {"item_id": item_id}
+@app.post('/start')
+def post_start (request: dict):
 
-@app.post("/create_item")
-def create_item(request: dict):
-    item_id = request.get("item_id")
-    name = request.get("name")
+    board = Board.from_json(request["'board"])
+    you = Battlesnake.from_json(request["you"])
 
-    return {"item_id": item_id,
-            "name": name}   
+    return
+
+@app.post('/move')
+def post_move (request: dict):
+    
+    board = Board.from_json(request["board"])
+    you = Battlesnake.from_json(request["you"])
+
+    moves = ['up','down','right','left']
+    move = random.choice(moves) #criar alguma lógica dps
+    response = {
+        "move": move,
+        "shout":'AaAAAaaa'
+    }
+    return response
+
+
+@app.post('/end')
+def post_end(request: dict):
+    print("GAME OVER")
 
 
 handler = Mangum(app, lifespan="off")

@@ -1,6 +1,7 @@
 from typing import List
 
 from src.app.shared.domain.entities.coordinate import Coordinate
+from src.app.shared.domain.entities.customization import Customization
 
 
 """
@@ -37,7 +38,7 @@ class Battlesnake:
     length: int
     shout: str
     squad: str
-    customizations: Customizations
+    customizations: Customization
 
     def __init__(self, id_value: str, name: str, health: int, body: List[Coordinate], 
                  latency: str, head: Coordinate, length: int, shout: str, squad: str, customizations:Customization):

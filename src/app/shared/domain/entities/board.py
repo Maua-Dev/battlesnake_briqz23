@@ -51,4 +51,12 @@ class Board:
         snakes = [Battlesnake.from_json(snake) for snake in json["snakes"]]
         hazards = [Coordinate.from_json(hazard) for hazard in json["hazards"]]
         return Board(height, width, food, snakes, hazards)
-    
+  
+    def move_command(self, move: str):
+      moves = {
+        "up": Coordinate(self.x, self.y + 1),
+        "down": Coordinate(self.x, self.y - 1),
+        "left": Coordinate(self.x - 1, self.y),
+        "right": Coordinate(self.x + 1, self.y),
+    }
+      return moves.get(move, Coordinate(self.x, self.y))
