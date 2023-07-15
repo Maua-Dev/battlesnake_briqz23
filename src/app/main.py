@@ -6,8 +6,6 @@ from src.app.shared.domain.entities.board import Board
 
 app = FastAPI()
 
-# TODO: Implement my logic here to handle the requests from Battlesnake
-
 @app.get('/')
 def get_root():
     response = {
